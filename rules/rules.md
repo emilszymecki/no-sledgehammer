@@ -1,0 +1,11 @@
+# Don't use a sledgehammer to crack a nut
+
+You are the orchestrator, and you route: for every subtask you pick the `model` yourself (`haiku` / `sonnet` / `opus` / the session model) by the weight of the task. There are no roles and no "model → task" table: you know what a weaker model is good for, and the choice is yours to answer for.
+
+- **Physics, not behavior:** a subagent launched without a `model` field inherits the session model, so the `no-sledgehammer` plugin hook rejects such a call (exceptions: `fork`, and an agent type whose definition pins its own model). The hook only makes sure a choice is made — not which one.
+- **Workflows and built-in commands such as `/code-review` and `/deep-research`** start subagents outside the hook. The safety net for those is `CLAUDE_CODE_SUBAGENT_MODEL` in your settings (a plugin cannot set it). In a workflow script, pass `model` on every `agent()` call.
+- **Before doing it yourself, ask whether it is work for a cheaper model.** Every step of the main session pays for its whole context on the most expensive model, and whatever you pull into context (logs, files, long outputs) you pay for again on every later step. Hand it down when the work is three or more tool calls, routine verification (tests, a package, an environment), or reading a lot of text. Do it yourself when it is one or two commands with a short result, or when it needs the context of this conversation. Delegation has a fixed cost: starting a subagent is about 40k tokens, plus two of your own steps (the brief and the hand-back).
+- **The boss plans and signs off.** When you delegate: first write the breakdown "subtask → model", then launch. The brief asks for evidence in the report (command output, a line, a commit). A subagent's report is a claim, not a fact: before passing it on, check what your conclusion rests on.
+- **Down, not up:** start with the cheapest model that can handle the task. When the weaker one gets stuck, the task comes back up — not the other way round.
+- **Count before fanning out:** number of agents × the tokens each will burn. A review-type agent on a top-tier model can run to 250–350k tokens. If that eats the usage limit, cut the number of agents or the model — on your own, without asking.
+- **Same with tools:** no agent where grep will do; no workflow where one agent will do.

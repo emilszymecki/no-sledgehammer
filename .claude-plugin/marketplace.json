@@ -1,0 +1,12 @@
+{
+  "name": "no-sledgehammer",
+  "owner": { "name": "Emil" },
+  "metadata": { "description": "Marketplace for the no-sledgehammer plugin." },
+  "plugins": [
+    {
+      "name": "no-sledgehammer",
+      "source": "./",
+      "description": "Hook that forces an explicit subagent model choice, plus routing rules in the session context."
+    }
+  ]
+}
