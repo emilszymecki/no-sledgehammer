@@ -4,7 +4,7 @@ argument-hint: '<task>'
 disable-model-invocation: true
 ---
 
-The user typed `/sub`. That is an explicit order, not a hint: for this task you are only the orchestrator. Every piece of real work runs on a subagent. Your own job is to split, brief, check and put the result together.
+The user typed `/hammer`. That is an explicit order, not a hint: for this task you are only the orchestrator. Every piece of real work runs on a subagent. Your own job is to split, brief, check and put the result together.
 
 Task: $ARGUMENTS
 
