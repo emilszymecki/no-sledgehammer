@@ -1,6 +1,6 @@
 {
   "name": "no-sledgehammer",
-  "version": "0.1.0",
-  "description": "Keeps subagents from silently running on the (most expensive) session model: a hook rejects Agent calls without a `model` field, and routing rules are injected at session start.",
+  "version": "0.2.0",
+  "description": "Keeps subagents from silently running on the session model: a hook rejects Agent calls without a `model` field, and routing rules are injected at session start.",
   "author": { "name": "Emil" }
 }

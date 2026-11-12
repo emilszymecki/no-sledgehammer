@@ -1,6 +1,6 @@
 # no-sledgehammer
 
-Claude Code plugin: subagents do not silently run on the session model (usually the most expensive one).
+Claude Code plugin: subagents do not silently run on the session model. The orchestrator picks a model for every subtask.
 
 - `hooks/agent-model-required.sh`: PreToolUse on `Agent|Task`; rejects a call without a `model` field.
   Passes `fork` and agent types whose definition pins a model.
@@ -32,7 +32,8 @@ hook, so set the safety net yourself in your settings:
 
 `sonnet` is an example. Set whichever model you want those subagents to fall back to.
 
-The numbers in the rules were measured on Claude Code 2.1.322 (November 2026); they are orders of magnitude, not constants.
+The token figures in the rules were measured on Claude Code 2.1.322 (November 2026); they are orders of magnitude, not constants. The criteria for what pays to delegate follow Anthropic's
+[Optimizing for cost and intelligence](https://platform.claude.com/docs/en/about-claude/models/optimizing-for-cost-and-intelligence).
 
 ## Dry-run the hook
 

@@ -34,4 +34,4 @@ definition_pins_model && exit 0
 
 jq -n '{hookSpecificOutput: {hookEventName: "PreToolUse",
   permissionDecision: "deny",
-  permissionDecisionReason: "A subagent without a `model` field would inherit the session model. Pass `model` deliberately (haiku / sonnet / opus / the session model): judge for yourself which is the cheapest one that can handle this task."}}'
+  permissionDecisionReason: "A subagent without a `model` field would inherit the session model. Pass `model` deliberately: judge for yourself which of the available models this task needs."}}'
