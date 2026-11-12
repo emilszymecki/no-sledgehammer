@@ -14,9 +14,11 @@ no roles, no agent definitions, no "model → task" tables.
 ## Install
 
 ```
-claude plugin marketplace add <path-or-git-url>
+claude plugin marketplace add emilszymecki/no-sledgehammer
 claude plugin install no-sledgehammer@no-sledgehammer
 ```
+
+Restart the session afterwards: hooks load at session start.
 
 ## What the plugin cannot do
 
@@ -28,6 +30,8 @@ hook, so set the safety net yourself in your settings:
 { "env": { "CLAUDE_CODE_SUBAGENT_MODEL": "sonnet" } }
 ```
 
+`sonnet` is an example. Set whichever model you want those subagents to fall back to.
+
 The numbers in the rules were measured on Claude Code 2.1.322 (November 2026); they are orders of magnitude, not constants.
 
 ## Dry-run the hook
@@ -38,3 +42,7 @@ echo '{"tool_input":{"subagent_type":"general-purpose","prompt":"x"},"cwd":"/tmp
 echo '{"tool_input":{"subagent_type":"general-purpose","model":"haiku"},"cwd":"/tmp"}' \
   | hooks/agent-model-required.sh      # -> empty output, exit 0
 ```
+
+## License
+
+MIT
