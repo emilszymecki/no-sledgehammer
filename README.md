@@ -5,7 +5,7 @@ Claude Code plugin: subagents do not silently run on the session model. The orch
 - `hooks/agent-model-required.sh`: PreToolUse on `Agent|Task`; rejects a call without a `model` field.
   Passes `fork` and agent types whose definition pins a model.
 - `hooks/session-start.sh`: injects `rules/rules.md` into the context (start, `/clear`, compaction).
-- `commands/hammer.md`: `/hammer <task>` forces delegation. The session only splits, briefs, checks and assembles;
+- `commands/delegate.md`: `/no-sledgehammer:delegate <task>` forces delegation. The session only splits, briefs, checks and assembles;
   every piece of work runs on a subagent with a model picked for that piece. User-invoked only.
 
 ## Principle: physics, not behavior
